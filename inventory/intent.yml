@@ -1,0 +1,11 @@
+bgp:
+  R-Edge:   {neighbors: [172.16.0.2]}
+  R-Branch: {neighbors: [172.16.0.1]}
+ospf:
+  R-Branch: {neighbors: [10.255.0.3]}
+  R-CORE:   {neighbors: [10.255.0.2, 10.255.0.4, 10.255.0.5]}
+  SW-DIST1: {neighbors: [10.255.0.3]}
+  SW-DIST2: {neighbors: [10.255.0.3]}
+hsrp:
+  SW-DIST1: {active: [10, 99], standby: [20]}
+  SW-DIST2: {active: [20], standby: [10, 99]}
