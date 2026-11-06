@@ -9,3 +9,22 @@ ospf:
 hsrp:
   SW-DIST1: {active: [10, 99], standby: [20]}
   SW-DIST2: {active: [20], standby: [10, 99]}
+interfaces:
+  R-Edge:   [GigabitEthernet0/0, GigabitEthernet0/1, Loopback0, Loopback1]
+  R-Branch: [GigabitEthernet0/0, GigabitEthernet0/1, Loopback0]
+  R-CORE:   [GigabitEthernet0/0, GigabitEthernet0/1, GigabitEthernet0/2, Loopback0]
+  SW-DIST1: [GigabitEthernet0/0, GigabitEthernet0/1, Port-channel1, Vlan10, Vlan20, Vlan99, Loopback0]
+  SW-DIST2: [GigabitEthernet0/0, GigabitEthernet0/1, Port-channel1, Vlan10, Vlan20, Vlan99, Loopback0]
+  SW-ACC:   [GigabitEthernet0/0, GigabitEthernet0/1, Vlan99]
+lacp:
+  SW-DIST1: {bundle: Po1, members: [Gi0/2, Gi0/3]}
+  SW-DIST2: {bundle: Po1, members: [Gi0/2, Gi0/3]}
+stp_root:
+  SW-DIST1: {root: [10, 99], not_root: [20]}
+  SW-DIST2: {root: [20], not_root: [10, 99]}
+stp_blocked:
+  SW-ACC: {10: Gi0/1, 20: Gi0/0, 99: Gi0/1}
+e2e:
+  R-Edge:
+    - {dst: 10.10.10.1, src: 198.51.100.1}
+    - {dst: 10.10.20.1, src: 198.51.100.1}
